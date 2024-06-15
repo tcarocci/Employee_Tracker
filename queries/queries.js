@@ -84,6 +84,12 @@ const updateEmployeeManager = async (employee_id, manager_id) => {
   return res.rows[0];
 };
 
+const setEmployeeManagerToNull = async (manager_id) => {
+  const query = 'UPDATE employee SET manager_id = NULL WHERE manager_id = $1 RETURNING *';
+  const res = await client.query(query, [manager_id]);
+  return res.rows;
+};
+
 const deleteEmployeesByRoleId = async (role_id) => {
   const query = 'DELETE FROM employee WHERE role_id = $1 RETURNING *';
   const res = await client.query(query, [role_id]);
@@ -107,20 +113,24 @@ const deleteRolesByDepartmentId = async (department_id) => {
 };
 
 const deleteDepartment = async (id) => {
-  await deleteRolesByDepartmentId(id);
+  // First, delete roles and employees
+  await deleteRolesByDepartmentId(id); 
   const query = 'DELETE FROM department WHERE id = $1 RETURNING *';
   const res = await client.query(query, [id]);
   return res.rows[0];
 };
 
 const deleteRole = async (id) => {
-  await deleteEmployeesByRoleId(id); 
+  // First, delete employees
+  await deleteEmployeesByRoleId(id); // First, delete employees
   const query = 'DELETE FROM role WHERE id = $1 RETURNING *';
   const res = await client.query(query, [id]);
   return res.rows[0];
 };
 
 const deleteEmployee = async (id) => {
+  // Set manager_id to NULL for employees referencing this employee
+  await setEmployeeManagerToNull(id); 
   const query = 'DELETE FROM employee WHERE id = $1 RETURNING *';
   const res = await client.query(query, [id]);
   return res.rows[0];
