@@ -20,14 +20,18 @@ This application is a command-line interface (CLI) built to manage a company's e
 
 - npm install
 
-4. Set up your PostgreSQL database:
+4. Configure the database connection:
 
-- Create a database named company_db.
-- Run the schema and seed files to create tables and populate initial data:
+- Update the config/connection.js file and .env with your PostgreSQL credentials.
 
-5. Configure the database connection:
+5. Set up your PostgreSQL database:
 
-- Update the config/connection.js file with your PostgreSQL credentials.
+- In the term(be inside the db folder), type psql -U postgres
+- Enter postgress password.
+- \i schema.sql - Hit enter
+- \i seeds.sql - Hit enter
+- \q to exit
+- cd .. - Hit enter to go back to the root directory
 
 ## Usage
 
@@ -62,14 +66,14 @@ This application is a command-line interface (CLI) built to manage a company's e
 
 ## Screenshots
 
-Main Menu
+Main Menu<br>
 ![Main Menu](/assets/images/mmenu.png)
 
-Departments
+Departments<br>
 ![Departments](/assets/images/departments.png)
 
-Roles
+Roles<br>
 ![Roles](/assets/images/roles.png)
 
-Employees
+Employees<br>
 ![Employees](/assets/images/employee.png)
