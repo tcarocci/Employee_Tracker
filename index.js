@@ -230,7 +230,7 @@ const viewEmployeesByDepartment = async () => {
     console.table(employees);
   };
 
-const deleteDepartment = async () => {
+  const deleteDepartment = async () => {
     const departments = await db.getAllDepartments();
     const { department_id } = await inquirer.prompt([
       {
@@ -244,7 +244,7 @@ const deleteDepartment = async () => {
     console.log(`Deleted department`);
   };
   
-const deleteRole = async () => {
+  const deleteRole = async () => {
     const roles = await db.getAllRoles();
     const { role_id } = await inquirer.prompt([
       {
