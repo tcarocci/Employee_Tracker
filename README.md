@@ -4,7 +4,7 @@ This application is a command-line interface (CLI) built to manage a company's e
 
 ## Video Link
 
-[Clink Link to Video Demonstration]()
+[Clink Link to Video Demonstration](/assets/Employee_tracker_vid.mp4)
 
 ## Installation
 
